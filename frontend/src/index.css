@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url("/hero.png");
+}
+
+.shimmer-overlay {
+	animation: shimmerGlow 1.8s infinite linear, pulse 1.8s infinite ease-in-out;
+	background: linear-gradient(120deg, rgba(39, 39, 39, 0.8) 30%, rgba(55, 55, 55, 0.8) 50%, rgba(39, 39, 39, 0.8) 70%);
+	background-size: 300% 100%;
+}
+
+@keyframes shimmerGlow {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.02);
+	}
+}
+
+.error-page--content::before {
+	background: radial-gradient(
+		ellipse at center,
+		rgba(0, 0, 0, 0.5) 0,
+		rgba(0, 0, 0, 0.2) 45%,
+		rgba(0, 0, 0, 0.1) 55%,
+		transparent 70%
+	);
+	bottom: -10vw;
+	content: "";
+	left: 10vw;
+	position: absolute;
+	right: 10vw;
+	top: -10vw;
+	z-index: -1;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #4b5563;
+	border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #1a202c;
+}

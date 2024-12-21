@@ -1,0 +1,13 @@
+Steps to Kill the Process on Windows:
+Terminate the Process:
+
+Open Command Prompt as Administrator.
+Run the following command:
+"
+netstat -ano | findstr :5000
+"
+Note:5000 is port no.
+to kill process on port 5000 with pid 9036
+"
+taskkill /PID 9036 /F
+"
