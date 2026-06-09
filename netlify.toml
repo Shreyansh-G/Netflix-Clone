@@ -1,0 +1,35 @@
+# Netlify configuration — deploys the React (Vite) FRONTEND only.
+#
+# NOTE: The Express backend is NOT hosted here. Netlify has no always-on
+# server, so the API (/api/v1/...) will not work on the deployed site unless
+# you host the backend separately. See the README sections
+# "Deploying to Netlify" and "Making it fully work in production".
+
+[build]
+  base = "frontend"          # run the build inside the frontend folder
+  command = "npm run build"  # vite build -> creates frontend/dist
+  publish = "dist"           # publish path is relative to base (frontend/dist)
+
+[build.environment]
+  NODE_VERSION = "18"        # Vite 5 needs Node 18+
+
+# SPA fallback: let React Router handle client-side routes such as
+# /watch/123 instead of Netlify returning 404 on refresh / direct visit.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ---------------------------------------------------------------------------
+# OPTIONAL — make the backend reachable from the Netlify site.
+# If you host the Express backend somewhere (e.g. Render), uncomment this and
+# replace the URL. It proxies /api/* to your backend so the frontend can keep
+# calling relative URLs (and cookies stay same-origin). Must be ABOVE the
+# SPA redirect above to take effect.
+#
+# [[redirects]]
+#   from = "/api/*"
+#   to = "https://YOUR-BACKEND.onrender.com/api/:splat"
+#   status = 200
+#   force = true
+# ---------------------------------------------------------------------------
